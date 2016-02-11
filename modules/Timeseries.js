@@ -8,10 +8,10 @@ d3.timeSeries = function(){
 		chartW = w - m.l - m.r, 
 		chartH = h - m.t - m.b,
 		layout = d3.layout.histogram(),
-		maxT=1000;
+		maxT=80;
 
 	var	timeRange = [new Date(),new Date()], //time range
-		// binSize=d3.time.day, //number of bins --> .day specifies every day / stick to week for simplicity
+		binSize=d3.time.day, //number of bins --> .day specifies every day / stick to week for simplicity
 	valueAccessor = function(d){return d;};//used by d3.layout.histogram
 
 	//scales
@@ -50,52 +50,54 @@ selection.each(draw);
 
 
 function draw(d){
-		var _data = layout(d);
+		var _data = layout(d); //d3.layout.histogram(d)
 		// console.log(_data);
 
-		var area = d3.svg.area()
-						.x(function(d) {return scaleX(d.x.getTime() + d.dx/2);})
-   						.y0(chartH)
-    					.y1(function(d) {return scaleY(d.y);})
-    					.interpolate('basis');
 		var line = d3.svg.line()
-						.x(function(d){return scaleX(d.x.getTime() + d.dx/2);})
-						.y(function(d){return scaleY(d.y);})
-						.interpolate('basis'); //refers to a linear interpolation
-		var axis = d3.svg.axis()
-						.orient('bottom')
-						.scale(scaleX)
-						.ticks(d3.time.year);
+					.x(function(d){return scaleX(d.x.getTime() + d.dx/2)})
+					.y(function(d){return scaleY(d.y)})
+					.interpolate('basis'); //refers to a linear interpolation
+
+		var area = d3.svg.area()
+					.x(function(d) {return scaleX(d.x.getTime() + d.dx/2)})
+   					.y0(chartH)
+    				.y1(function(d) {return scaleY(d.y);})
+    				.interpolate('basis');
+		var axisX = d3.svg.axis() //axisX
+					.orient('bottom')
+					.scale(scaleX)
+					.ticks(d3.time.year);
 		
 		var svg = d3.select(this)
 					.selectAll('svg')
 					.data([d]);
-					console.log("I SEE YOU");
+
+	console.log("I SEE YOU");
 		
-		var svg2 = svg
-					.enter()
-					.append('svg');
+		var svg2 = svg.enter().append('svg');//svgEnter
 
-		//insert shape generators to draw //ref old notes
 
-						
 
+		//moved up //insert shape generators to draw //ref old notes
 // append DOM and draw the (x,y) as a line, and an area
 //same thing, just draw twice, change class and style in CSS
-var areaAppend = svg2.append('g')
-					 .attr('class','area')
-					 .attr('transform','translate('+m.l+','+m.t+')')
-					 .append('path');
-var lineAppend = svg2.append('g')
-					 .attr('class','line')
-					 .attr('transform','translate('+m.l+','+m.t+')')
-					 .append('path');
-var axisAppend = svg2.append('g')
-					  .attr('class','axis')
-					  .attr('transform','translate('+m.l+','+(m.t+chartH)+')');
+// var areaAppend = 
+svg2.append('g')
+			.attr('class','area')
+			.attr('transform','translate('+m.l+','+m.t+')')
+			.append('path');
+// var lineAppend = 
+svg2.append('g')
+			.attr('class','line')
+			.attr('transform','translate('+m.l+','+m.t+')')
+			.append('path');
+// var axisAppend = 
+svg2.append('g')
+			.attr('class','axis')
+			.attr('transform','translate('+m.l+','+(m.t+chartH)+')');
 
-svg.attr('width',w)
-	.attr('height',h);
+svg.attr('width',w).attr('height',h);
+
 
 svg.select('.line')//select all svgs with class area
 	.select('path')//select the appended paths in the class area
@@ -109,7 +111,7 @@ svg.select('.area')//select all svgs with class area
 
 //append DOM and draw axis - DRAW ONLY X-AXIS NOT Y-
 svg.select('.axis')
-	.call(axis);
+	.call(axisX);//axisX
 }
 
 
@@ -145,6 +147,11 @@ exports.value = function (accessor){
 	valueAccessor = accessor;
 	return this;
 }
+exports.maxT = function(_y){
+		if(!arguments.length) return maxY;
+		maxY = _y;
+		return this;
+	}
 
 return exports;
 }

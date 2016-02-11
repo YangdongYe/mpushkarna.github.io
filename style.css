@@ -1,22 +1,70 @@
-.plot{
+/*.plot{
 	width: 20%;
 	height: 200px;
 	float:left; 
-}
+    font-family: Merriweather;
+    font-size: 0.8 em;
+}*/
 
-.axis{
-    fill:none;
-    stroke:rgb(100,100,100);
+.plot{
+    width:33%;
+    height:200px;
+    float:left;
 }
-
 .guide{
     fill:none;
     stroke:rgb(100,100,100);
 }
+.plot h2{
+    position:absolute;
+    font-size:1.2em;
+    color: #666666;
+    font-family: Merriweather;
+    font-weight: 300;
+    line-height: 1.8;
+}
+
+.plot .line path{
+    fill:none;
+    stroke-width:1px;
+    stroke:rgb(80,80,80);
+}
 .plot .area path{
+    fill:rgba(100,100,100,.05);
+}
+.axis .tick text{
+    font-family: Raleway;
+    font-size: 0.8 em;
+    fill: #666666;
+}
+body{
+    color: #666666;
+    font-family: Merriweather;
+    font-size: 10px;
+    font-weight: 300;
+    line-height: 1.8;
+}
+
+/*.axis{
+    font-family: Merriweather;
+    font-size: 0.6 em;
+    fill:none;
+    stroke: #666666;
+    font-weight: 100;
+    line-height: 1.8;
+}
+
+.axis .tick text{
+    font-family: Raleway;
+    font-size: 0.8 em;
+    fill: #666666;
+}
+
+
+.plot.area path{
     fill:rgba(200,200,200,.5);
 }
-.plot .line path{
+.plot.line path{
     fill:none;
     stroke:rgb(80,80,80);
     stroke-width:2px;
@@ -24,8 +72,17 @@
 .plot h2{
     position:absolute;
     font-size:1.1em;
+    color: #666666;
+    font-family: Merriweather;
+    font-weight: 300;
+    line-height: 1.8;
 }
-/*.plot p{
-    position:absolute;
-    font-size:0.8em;
-}*/
+
+body{
+    color: #666666;
+    font-family: Merriweather;
+    font-size: 10px;
+    font-weight: 300;
+    line-height: 1.8;
+}
+*/

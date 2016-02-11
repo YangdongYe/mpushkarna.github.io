@@ -1,37 +1,40 @@
 var w = d3.select('.plot').node().clientWidth,
     h = d3.select('.plot').node().clientHeight;
 
-d3.csv('../data/hubway_trips_reduced.csv',parse,dataLoaded);
-
 var timeSeries = d3.timeSeries()
                 .width(w)
                 .height(h)
-                .timeRange([new Date (2011,6,14), new Date (2013,11,13)])
+                .timeRange([new Date (2011,6,16), new Date (2013,11,15)])
                 .value(function(d){return d.startTime})
+                .maxT(50)
                 .binSize(d3.time.day);
+
+d3.csv('../data/hubway_trips_reduced.csv',parse,dataLoaded);
 
 function dataLoaded(err,rows){
 
 //use this function to sort by origin or destination
-var sourcePoint = function(rows){return rows.startStation};
+// var sourcePoint = function(rows){return rows.startStation};
 
 //set up for data for small multiples
 //define stations
 var tripsStation= d3.nest()
-                    .key(sourcePoint)
-                    // .key(function(d){return d.startStation})
+                    // .key(sourcePoint)
+                    .key(function(d){return d.startStation})
                     .entries(rows);
 
 //add data to each station
 var plots= d3.select('.container')
             .selectAll('.plot')
             .data(tripsStation);
-//console.log (tripsStation); //successfully returns a nested array of trips by sorting order
+
+console.log (tripsStation); //successfully returns a nested array of trips by sorting order
 
 //oh wait assign a class so it knows where to go and how to look
-plots .enter()
-      .append('div')
-      .attr('class','plot');
+plots
+    .enter()
+    .append('div')
+    .attr('class','plot');
 
 //now draw - WHY IS THIS NOT HAPPENING??!
 plots
