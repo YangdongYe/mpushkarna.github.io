@@ -24,12 +24,12 @@
     line-height: 1.8;
 }
 
-.plot svg .line path{
+.line path{
     fill:none;
     stroke-width:1px;
     stroke:rgb(80,80,80);
 }
-.plot .area path{
+.area path{
     fill:rgba(100,100,100,.05);
 }
 .axis .tick text{
