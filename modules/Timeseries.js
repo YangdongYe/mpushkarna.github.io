@@ -5,156 +5,155 @@ d3.timeSeries = function(){
 		chartW = w - m.l - m.r, 
 		chartH = h - m.t - m.b,
 		layout = d3.layout.histogram(),
-		maxT=100;
+		maxT=500;
 
 	var	timeRange = [new Date(),new Date()],
-		binSize=d3.time.day,
+		binSize,
 		valueAccessor = function(d){return d;};
 
-	//scales
+		//scales
 	var scaleX = d3.time.scale()
-				.range([0, chartW])
-				.domain(timeRange);
+					.range([0, chartW])
+					.domain(timeRange);
 	var scaleY = d3.scale.linear()
-				.range([chartH,0])
-				.domain([0,maxT]);
+					.range([chartH,0])
+					.domain([0,maxT]);
 
-/*CUSTOM CHART*/
-function exports(selection){ 
+	/*CUSTOM CHART*/
+	function exports(selection){ 
 
-	var layBins = binSize.range(timeRange[0],timeRange[1]);
-		layBins.unshift(timeRange[0]); 
-		layBins.push(timeRange[1]);
-	layout = d3.layout.histogram();
-	layout
-	.range(timeRange)
-	.bins(layBins);
+		var layBins = binSize.range(timeRange[0],timeRange[1]);
+			layBins.unshift(timeRange[0]); 
+			layBins.push(timeRange[1]);
+
+		// layout = d3.layout.histogram();
+		layout
+		.range(timeRange)
+		.bins(layBins);
 		
-/* use a histogram layout  to transform into a series of (x,y)*/
-//set size and scale
-	chartW = w - m.l - m.r, 
-	chartH = h - m.t - m.b;
-	scaleX.range([0,chartW]).domain(timeRange); 
-	scaleY.range([chartH,0]).domain([0,maxT]); 
+		chartW = w - m.l - m.r, 
+		chartH = h - m.t - m.b;
+		scaleX.range([0,chartW]).domain(timeRange); 
+		scaleY.range([chartH,0]).domain([0,maxT]); 
 
-selection.each(draw);
-}
+	selection.each(draw);
+	}
 
 
-function draw(d){
-		var _data = layout(d); 
+	function draw(d){
+			var _data = layout(d); 
 
-		// var line = d3.svg.line()
-		// 			.x(function(d){return scaleX(d.x.getTime() + d.dx/2)})
-		// 			.y(function(d){return scaleY(d.y)})
-		// 			.interpolate('basis');
-		// var area = d3.svg.area()
-		// 			.x(function(d) {return scaleX(d.x.getTime() + d.dx/2)})
-  //  					.y0(chartH)
-  //   				.y1(function(d) {return scaleY(d.y);})
-  //   				.interpolate('basis');
-		// var axisX = d3.svg.axis()
-		// 			.orient('bottom')
-		// 			.scale(scaleX)
-		// 			.ticks(d3.time.year);	
-		var svg = d3.select(this)
-					.selectAll('svg')
-					.data([d]);
-										console.log("I SEE YOU");
-		var svg2 = svg.enter().append('svg');//svgEnter
- 
-		svg2.append('g')
-			.attr('class','area')
-			.attr('transform','translate('+m.l+','+m.t+')')
-			.append('path');
+			// var line = d3.svg.line()
+			// 			.x(function(d){return scaleX(d.x.getTime() + d.dx/2)})
+			// 			.y(function(d){return scaleY(d.y)})
+			// 			.interpolate('basis');
+			// var area = d3.svg.area()
+			// 			.x(function(d) {return scaleX(d.x.getTime() + d.dx/2)})
+	  //  				.y0(chartH)
+	  //   				.y1(function(d) {return scaleY(d.y);})
+	  //   				.interpolate('basis');
+			// var axisX = d3.svg.axis()
+			// 			.orient('bottom')
+			// 			.scale(scaleX)
+			// 			.ticks(d3.time.year);	
+			var svg = d3.select(this)
+						.selectAll('svg')
+						.data([d]);
+											console.log("I SEE YOU");
+			var svgEnter = svg.enter().append('svg');//svgEnter
+	 
+			svgEnter.append('g')
+				.attr('class','area')
+				.attr('transform','translate('+m.l+','+m.t+')')
+				.append('path');
 
-		svg2.append('g')
-			.attr('class','line')
-			.attr('transform','translate('+m.l+','+m.t+')')
-			.append('path');
+			svgEnter.append('g')
+				.attr('class','line')
+				.attr('transform','translate('+m.l+','+m.t+')')
+				.append('path');
 
-		svg2.append('g')
-			.attr('class','axis')
-			.attr('transform','translate('+m.l+','+(m.t+chartH)+')');
+			svgEnter.append('g')
+				.attr('class','axis')
+				.attr('transform','translate('+m.l+','+(m.t+chartH)+')');
 
-		svg.attr('width',w).attr('height',h);
+			svg.attr('width',w).attr('height',h);
 
-var line = d3.svg.line()
-					.x(function(d){return scaleX(d.x.getTime() + d.dx/2)})
-					.y(function(d){return scaleY(d.y)})
-					.interpolate('basis');
-svg.select('.line')
-	.select('path')
-	.datum(_data)
-	.attr('d',line);
-	/*line = d3.svg.line()
-					.x(function(d){return scaleX(d.x.getTime() + d.dx/2)})
-					.y(function(d){return scaleY(d.y)})
-					.interpolate('basis');*/
-var area = d3.svg.area()
-					.x(function(d) {return scaleX(d.x.getTime() + d.dx/2)})
-   					.y0(chartH)
-    				.y1(function(d) {return scaleY(d.y);})
-    				.interpolate('basis');
-svg.select('.area')
-	.select('path')
-	.datum(_data)
-	.attr('d',area);
-	/*var area = d3.svg.area()
-					.x(function(d) {return scaleX(d.x.getTime() + d.dx/2)})
-   					.y0(chartH)
-    				.y1(function(d) {return scaleY(d.y);})
-    				.interpolate('basis');*/
-var axisX = d3.svg.axis()
-					.orient('bottom')
-					.scale(scaleX)
-					.ticks(d3.time.year);
-svg.select('.axis')
-	.call(axisX);
-	/*var axisX = d3.svg.axis()
-					.orient('bottom')
-					.scale(scaleX)
-					.ticks(d3.time.year);*/
-}
+	var line = d3.svg.line()
+						.x(function(d){return scaleX(d.x.getTime() + d.dx/2)})
+						.y(function(d){return scaleY(d.y)})
+						.interpolate('basis');
+	svg.select('.line')
+		.select('path')
+		.datum(_data)
+		.attr('d',line);
+		/*line = d3.svg.line()
+						.x(function(d){return scaleX(d.x.getTime() + d.dx/2)})
+						.y(function(d){return scaleY(d.y)})
+						.interpolate('basis');*/
+	var area = d3.svg.area()
+						.x(function(d) {return scaleX(d.x.getTime() + d.dx/2)})
+	   					.y0(chartH)
+	    				.y1(function(d) {return scaleY(d.y);})
+	    				.interpolate('basis');
+	svg.select('.area')
+		.select('path')
+		.datum(_data)
+		.attr('d',area);
+		/*var area = d3.svg.area()
+						.x(function(d) {return scaleX(d.x.getTime() + d.dx/2)})
+	   					.y0(chartH)
+	    				.y1(function(d) {return scaleY(d.y);})
+	    				.interpolate('basis');*/
+	var axisX = d3.svg.axis()
+						.orient('bottom')
+						.scale(scaleX)
+						.ticks(d3.time.year);
+	svg.select('.axis')
+		.call(axisX);
+		/*var axisX = d3.svg.axis()
+						.orient('bottom')
+						.scale(scaleX)
+						.ticks(d3.time.year);*/
+	}
 
 
 
-/*Getter and Setter functions*/
-//modify and access the internal variables
-exports.width = function(_x){
-	if(!arguments.length) return w;
-	w =_x;
-	return this; //returns exports
-}
+	/*Getter and Setter functions*/
+	//modify and access the internal variables
+	exports.width = function(_x){
+		if(!arguments.length) return w;
+		w =_x;
+		return this; //returns exports
+	}
 
-exports.height = function(_x){
-	if(!arguments.length) return h;
-	h =_x;
-	return this; //returns exports
-}
+	exports.height = function(_x){
+		if(!arguments.length) return h;
+		h =_x;
+		return this; //returns exports
+	}
 
-exports.timeRange=function(_r){
-	if(!arguments.length) return timeRange;
-	timeRange = _r;
-	return this;
-}
-
-exports.binSize = function (interval){
-	if(!arguments.length) return binSize;
-	binSize = interval;
-	return this;
-}
-
-exports.value = function (accessor){
-	if(!arguments.length) return valueAccessor;
-	valueAccessor = accessor;
-	return this;
-}
-exports.maxT = function(_y){
-		if(!arguments.length) return maxT;
-		maxT = _y;
+	exports.timeRange=function(_r){
+		if(!arguments.length) return timeRange;
+		timeRange = _r;
 		return this;
 	}
+
+	exports.binSize = function (interval){
+		if(!arguments.length) return binSize;
+		binSize = interval;
+		return this;
+	}
+
+	exports.value = function (accessor){
+		if(!arguments.length) return valueAccessor;
+		valueAccessor = accessor;
+		return this;
+	}
+	exports.maxT = function(_y){
+			if(!arguments.length) return maxT;
+			maxT = _y;
+			return this;
+		}
 
 return exports;
 }
