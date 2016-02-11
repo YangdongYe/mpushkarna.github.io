@@ -9,7 +9,7 @@ var timeSeries = d3.timeSeries()
                 .maxT(50)
                 .binSize(d3.time.day);
 
-d3.csv('../data/hubway_trips_reduced.csv',parse,dataLoaded);
+d3.csv('data/hubway_trips_reduced.csv',parse,dataLoaded);
 
 function dataLoaded(err,rows){
 
