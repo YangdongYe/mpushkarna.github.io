@@ -13,7 +13,7 @@
 }
 .guide{
     fill:none;
-    stroke:rgb(100,100,100);
+    stroke:rgb(0,100,100);
 }
 .plot h2{
     position:absolute;
