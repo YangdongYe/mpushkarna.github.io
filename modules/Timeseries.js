@@ -37,8 +37,7 @@ d3.timeSeries = function(){
 		chartH = h - m.t - m.b;
 		scaleX.range([0,chartW]).domain(timeRange); 
 		scaleY.range([chartH,0]).domain([0,maxT]); 
-console.log(chartH);
-console.log(scaleY);
+
 	
 	selection.each(draw(selection));
 
@@ -47,6 +46,7 @@ console.log(scaleY);
 
 	function draw(d){
 			var _data = layout(d); 
+			console.log(d);
 
 			// var line = d3.svg.line()
 			// 			.x(function(d){return scaleX(d.x.getTime() + d.dx/2)})
