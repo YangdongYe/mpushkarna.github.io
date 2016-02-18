@@ -15,9 +15,18 @@
     fill:none;
     stroke:rgb(0,100,100);
 }
-.plot h1{
+.plot h2{
     position:absolute;
     font-size:1.2em;
+    color: #666666;
+    font-family: Merriweather;
+    font-weight: 300;
+    line-height: 1.8;
+}
+
+.plot h1{
+    position:absolute;
+    font-size:1.5em;
     color: #666666;
     font-family: Merriweather;
     font-weight: 300;
