@@ -28,7 +28,7 @@ d3.timeSeries = function(){
 			layBins.unshift(timeRange[0]); 
 			layBins.push(timeRange[1]);
 
-		// layout = d3.layout.histogram();
+		//layout = d3.layout.histogram();
 		layout
 		.range(timeRange)
 		.bins(layBins);
@@ -37,8 +37,10 @@ d3.timeSeries = function(){
 		chartH = h - m.t - m.b;
 		scaleX.range([0,chartW]).domain(timeRange); 
 		scaleY.range([chartH,0]).domain([0,maxT]); 
-
+console.log(chartH);
+console.log(scaleY);
 	selection.each(draw);
+
 	}
 
 
@@ -98,6 +100,7 @@ d3.timeSeries = function(){
 	   					.y0(chartH)
 	    				.y1(function(d) {return scaleY(d.y);})
 	    				.interpolate('basis');
+
 	svg.select('.area')
 		.select('path')
 		.datum(_data)
