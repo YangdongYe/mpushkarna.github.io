@@ -39,7 +39,8 @@ d3.timeSeries = function(){
 		scaleY.range([chartH,0]).domain([0,maxT]); 
 console.log(chartH);
 console.log(scaleY);
-	selection.each(draw);
+	
+	selection.each(draw(selection));
 
 	}
 
