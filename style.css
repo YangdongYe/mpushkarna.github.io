@@ -24,12 +24,12 @@
     line-height: 1.8;
 }
 
-.line path{
+.plot .line path{
     fill:none;
     stroke-width:1px;
     stroke:rgb(80,80,80);
 }
-.area path{
+.plot .area path{
     fill:rgba(100,100,100,.05);
 }
 .axis .tick text{
