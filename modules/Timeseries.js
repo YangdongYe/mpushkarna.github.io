@@ -11,7 +11,7 @@ d3.timeSeries = function(){
 	var	timeRange = [new Date(),new Date()],
 		binSize =d3.time.day,
 		valueAccessor = function(d){
-			return d.startTime;
+			return d.duration;
 		};
 
 		//scales
