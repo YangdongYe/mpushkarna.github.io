@@ -1,12 +1,12 @@
 d3.timeSeries = function(){
 
 	var w = 800,
-		h = 1500,
+		h = 600,
 		m = {t:25, r:50, b:25, l:50}, 
 		chartW = w - m.l - m.r, 
 		chartH = h - m.t - m.b,
 		layout = d3.layout.histogram(),
-		maxT=1000;
+		maxT=50;
 //pass duration
 	var	timeRange = [new Date(),new Date()],
 		binSize =d3.time.day,
