@@ -41,6 +41,11 @@
 .plot .area path{
     fill:rgba(100,100,100,.05);
 }
+
+.axis{
+    stroke-width:2px;
+    stroke:#666666;
+}
 .axis .tick text{
     font-family: Raleway;
     font-size: 0.8 em;
