@@ -4,7 +4,7 @@ var w = d3.select('.plot').node().clientWidth,
 var timeSeries = d3.timeSeries()
                 .width(w)
                 .height(h)
-                .timeRange([new Date (2011,6,16), new Date (2011,11,15)])
+                .timeRange([new Date (2011,6,16), new Date (2013,11,15)])
                 .value(function(d){return d.startTime})
                 .binSize(d3.time.day);
 
