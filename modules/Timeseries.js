@@ -1,7 +1,7 @@
 d3.timeSeries = function(){
 
 	var w = 800,
-		h = 1000,
+		h = 600,
 		m = {t:25, r:50, b:25, l:50}, 
 		chartW = w - m.l - m.r, 
 		chartH = h - m.t - m.b,
