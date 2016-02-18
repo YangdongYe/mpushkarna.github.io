@@ -11,7 +11,7 @@ d3.timeSeries = function(){
 	var	timeRange = [new Date(),new Date()],
 		binSize =d3.time.day,
 		valueAccessor = function(d){
-			return d;
+			return d.startTime;
 		};
 
 		//scales
@@ -31,6 +31,7 @@ d3.timeSeries = function(){
 
 		//layout = d3.layout.histogram();
 		layout
+		.value(valueAccessor)
 		.range(timeRange)
 		.bins(layBins);
 		
@@ -106,9 +107,9 @@ d3.timeSeries = function(){
 
 	/*Getter and Setter functions*/
 	//modify and access the internal variables
-	exports.width = function(_x){
+	exports.width = function(_v){
 		if(!arguments.length) return w;
-		w =_x;
+		w =_v;
 		return this; //returns exports
 	}
 
