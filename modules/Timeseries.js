@@ -1,14 +1,15 @@
 d3.timeSeries = function(){
+
 	var w = 800,
 		h = 600,
-		m = {t:25, r:50, b:25, l:50}, 
+		m = {t:50, r:50, b:50, l:50}, 
 		chartW = w - m.l - m.r, 
 		chartH = h - m.t - m.b,
 		layout = d3.layout.histogram(),
-		maxT=50;
+		maxT=1000;
 
 	var	timeRange = [new Date(),new Date()],
-		binSize,
+		binSize =d3.time.day,
 		valueAccessor = function(d){
 			return d;
 		};
@@ -48,79 +49,57 @@ d3.timeSeries = function(){
 			var _data = layout(d); 
 			console.log(d);
 
-			// var line = d3.svg.line()
-			// 			.x(function(d){return scaleX(d.x.getTime() + d.dx/2)})
-			// 			.y(function(d){return scaleY(d.y)})
-			// 			.interpolate('basis');
-			// var area = d3.svg.area()
-			// 			.x(function(d) {return scaleX(d.x.getTime() + d.dx/2)})
-	  //  				.y0(chartH)
-	  //   				.y1(function(d) {return scaleY(d.y);})
-	  //   				.interpolate('basis');
-			// var axisX = d3.svg.axis()
-			// 			.orient('bottom')
-			// 			.scale(scaleX)
-			// 			.ticks(d3.time.year);	
+			var line = d3.svg.line()
+						.x(function(d){return scaleX(d.x.getTime() + d.dx/2)})
+						.y(function(d){return scaleY(d.y)})
+						.interpolate('basis');
+			var area = d3.svg.area()
+						.x(function(d) {return scaleX(d.x.getTime() + d.dx/2)})
+						.y0(chartH)
+						.y1(function(d) {return scaleY(d.y);})
+						.interpolate('basis');
+			var axisX = d3.svg.axis()
+						.orient('bottom')
+						.scale(scaleX)
+						.ticks(d3.time.year);
+			
 			var svg = d3.select(this)
 						.selectAll('svg')
 						.data([d]);
 			var svgEnter = svg
 							.enter()
 							.append('svg');//svgEnter
-	 
-			svgEnter.append('g')
-				.attr('class','area')
-				.attr('transform','translate('+m.l+','+m.t+')')
-				.append('path');
 
+			//line graph
 			svgEnter.append('g')
 				.attr('class','line')
 				.attr('transform','translate('+m.l+','+m.t+')')
 				.append('path');
-
+			//area graph
+			svgEnter.append('g')
+				.attr('class','area')
+				.attr('transform','translate('+m.l+','+m.t+')')
+				.append('path');
+			//axis
 			svgEnter.append('g')
 				.attr('class','axis')
 				.attr('transform','translate('+m.l+','+(m.t+chartH)+')');
 
 			svg.attr('width',w).attr('height',h);
 
-	var line = d3.svg.line()
-						.x(function(d){return scaleX(d.x.getTime() + d.dx/2)})
-						.y(function(d){return scaleY(d.y);})
-						.interpolate('basis');
 	svg.select('.line')
 		.select('path')
 		.datum(_data)
 		.attr('d',line);
-		/*line = d3.svg.line()
-						.x(function(d){return scaleX(d.x.getTime() + d.dx/2)})
-						.y(function(d){return scaleY(d.y)})
-						.interpolate('basis');*/
-	var area = d3.svg.area()
-						.x(function(d) {return scaleX(d.x.getTime() + d.dx/2)})
-	   					.y0(chartH)
-	    				.y1(function(d) {return scaleY(d.y);})
-	    				.interpolate('basis');
 
 	svg.select('.area')
 		.select('path')
 		.datum(_data)
 		.attr('d',area);
-		/*var area = d3.svg.area()
-						.x(function(d) {return scaleX(d.x.getTime() + d.dx/2)})
-	   					.y0(chartH)
-	    				.y1(function(d) {return scaleY(d.y);})
-	    				.interpolate('basis');*/
-	var axisX = d3.svg.axis()
-						.orient('bottom')
-						.scale(scaleX)
-						.ticks(d3.time.year);
+
 	svg.select('.axis')
 		.call(axisX);
-		/*var axisX = d3.svg.axis()
-						.orient('bottom')
-						.scale(scaleX)
-						.ticks(d3.time.year);*/
+
 	}
 
 
