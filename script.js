@@ -5,7 +5,7 @@ var timeSeries = d3.timeSeries()
                 .width(w)
                 .height(h)
                 .timeRange([new Date (2011,6,16), new Date (2013,11,15)])
-                .value(function(d){return d.duration})
+                .value(function(d){return d.startTime})
                 .binSize(d3.time.week);
 
 d3.csv('data/hubway_trips_reduced.csv',parse,dataLoaded);
