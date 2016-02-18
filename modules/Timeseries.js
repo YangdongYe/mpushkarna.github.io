@@ -9,7 +9,9 @@ d3.timeSeries = function(){
 
 	var	timeRange = [new Date(),new Date()],
 		binSize,
-		valueAccessor = function(d){return d;};
+		valueAccessor = function(d){
+			return d;
+		};
 
 		//scales
 	var scaleX = d3.time.scale()
@@ -59,8 +61,9 @@ d3.timeSeries = function(){
 			var svg = d3.select(this)
 						.selectAll('svg')
 						.data([d]);
-											console.log("I SEE YOU");
-			var svgEnter = svg.enter().append('svg');//svgEnter
+			var svgEnter = svg
+							.enter()
+							.append('svg');//svgEnter
 	 
 			svgEnter.append('g')
 				.attr('class','area')
@@ -80,7 +83,7 @@ d3.timeSeries = function(){
 
 	var line = d3.svg.line()
 						.x(function(d){return scaleX(d.x.getTime() + d.dx/2)})
-						.y(function(d){return scaleY(d.y)})
+						.y(function(d){return scaleY(d.y);})
 						.interpolate('basis');
 	svg.select('.line')
 		.select('path')
