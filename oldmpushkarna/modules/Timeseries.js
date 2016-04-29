@@ -6,7 +6,7 @@ d3.timeSeries = function(){
 		chartW = w - m.l - m.r, 
 		chartH = h - m.t - m.b,
 		layout = d3.layout.histogram(),
-		maxT=50;
+		maxT=1000;
 //pass duration
 	var	timeRange = [new Date(),new Date()],
 		binSize =d3.time.day,
