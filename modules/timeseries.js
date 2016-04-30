@@ -55,31 +55,17 @@ d3.timeSeries = function(){
 
         //append and update DOM
         //Step 1: does <svg> element exist? If it does, update width and height; if it doesn't, create <svg>
-        var svg2 = d3.select(this).selectAll('svg')
+        var svg= d3.select(this).selectAll('svg')
                 .data([d]);
 
-        var svgEnter = svg2.enter().append('svg')
+        var svgEnter = svg.enter().append('svg')
         svgEnter.append('g').attr('class','area').attr('transform','translate('+m.l+','+m.t+')').append('path');
         svgEnter.append('g').attr('class','line').attr('transform','translate('+m.l+','+m.t+')').append('path');
         svgEnter.append('g').attr('class','axis').attr('transform','translate('+m.l+','+(m.t+chartH)+')');
 
-        // var tooltipEnter = svgEnter.append('g').attr('class','tool-tip');
-        // tooltipEnter.append('circle').attr('class','tool-tip-circle').attr('r',2);
-        // tooltipEnter.append('text').attr('class','tool-tip-text').attr('text-anchor','middle').attr('dy',-5);
-
-        // svgEnter.append('rect').attr('class','mouse-target').attr('transform','translate('+m.l+','+m.t+')')
-        //     .attr('width',chartW)
-        //     .attr('height',chartH)
-        //     .style('fill-opacity',0)
-        //     .on('mousemove', function(){
-        //         var xy = d3.mouse(this),
-        //             t = scaleX.invert(xy[0]);
-
-        //         _dis.hover(t);
-        //     });
 
 
-        svg2.attr('width',w).attr('height',h);
+        svg.attr('width',w).attr('height',h);
 
         //Step 2: create layers of DOM individually
         //2.1 line graph
@@ -96,17 +82,6 @@ d3.timeSeries = function(){
         svg.select('.axis')
             .call(axisX);
 
-        // //show value based on argument t
-        // _dis.on('showValue',function(t){
-        //    var index = bisect(_d, t),
-        //        v = _d[index];
-
-        //    var xPos = scaleX(v.x.getTime() + v.dx),
-        //        yPos = scaleY(v.y);
-
-        //     svg.select('.tool-tip').attr('transform','translate('+ (m.l+xPos) +','+ (m.t+yPos)+')')
-        //         .select('.tool-tip-text').text(v.y);
-        // });
 
     }
 
