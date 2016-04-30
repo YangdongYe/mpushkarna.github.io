@@ -221,7 +221,7 @@ return exports;
 }
 
 function onMouseEnter(d){
-    console.log(mouseposX,mouseposY);
+    console.log("HERE");
   
     var xy = d3.mouse(d3.select('.plot').node());
 

@@ -1,4 +1,4 @@
-d3.timeseries = function(){
+d3.timeSeries = function(){
 
 	//declare variables
 	//margins and plot
