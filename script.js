@@ -133,7 +133,7 @@ var plots = d3.select('.container')
 
     plots
     .each(function(d,i){
-        var timeSeries=d3.timeSeries()
+        var timeSeries= d3.timeSeries()
         .width(300)
         .height(100)
         .timeRange(timeRange)
@@ -142,7 +142,6 @@ var plots = d3.select('.container')
         .binSize(d3.time.month);
 
         d3.select(this).datum(d.values).call(timeSeries);
-
     })
 }
 

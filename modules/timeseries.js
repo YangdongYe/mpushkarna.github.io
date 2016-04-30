@@ -1,5 +1,6 @@
 d3.timeSeries = function(){
 
+    // var _dis = d3.dispatch('hover','showValue');
 
     var w = 800,
         h = 600,
@@ -9,7 +10,7 @@ d3.timeSeries = function(){
         chartH = h - m.t - m.b,
         timeRange = [new Date(), new Date()], //default timeRange
         binSize = d3.time.month,
-        maxY = 4000, //maximum number of trips to show on the y axis
+        maxY = 100, //maximum number of trips to show on the y axis
         scaleX = d3.time.scale().range([0,chartW]).domain(timeRange),
         scaleY = d3.scale.linear().range([chartH,0]).domain([0,maxY]),
         valueAccessor = function(d){ return d;};
@@ -50,18 +51,32 @@ d3.timeSeries = function(){
         var axisX = d3.svg.axis()
             .orient('bottom')
             .scale(scaleX)
-            .ticks(d3.time.year);
+            .ticks(d3.time.month);
 
         //append and update DOM
         //Step 1: does <svg> element exist? If it does, update width and height; if it doesn't, create <svg>
-        var svg2 = d3.select(this).selectAll('svg')
-                    .data([d]);
+        var svg = d3.select(this).selectAll('svg')
+            .data([d]);
 
-        var svgEnter = svg2.enter().append('svg')
-
+        var svgEnter = svg.enter().append('svg')
         svgEnter.append('g').attr('class','area').attr('transform','translate('+m.l+','+m.t+')').append('path');
         svgEnter.append('g').attr('class','line').attr('transform','translate('+m.l+','+m.t+')').append('path');
         svgEnter.append('g').attr('class','axis').attr('transform','translate('+m.l+','+(m.t+chartH)+')');
+
+        // var tooltipEnter = svgEnter.append('g').attr('class','tool-tip');
+        // tooltipEnter.append('circle').attr('class','tool-tip-circle').attr('r',2);
+        // tooltipEnter.append('text').attr('class','tool-tip-text').attr('text-anchor','middle').attr('dy',-5);
+
+        // svgEnter.append('rect').attr('class','mouse-target').attr('transform','translate('+m.l+','+m.t+')')
+        //     .attr('width',chartW)
+        //     .attr('height',chartH)
+        //     .style('fill-opacity',0)
+        //     .on('mousemove', function(){
+        //         var xy = d3.mouse(this),
+        //             t = scaleX.invert(xy[0]);
+
+        //         _dis.hover(t);
+        //     });
 
 
         svg.attr('width',w).attr('height',h);
@@ -81,6 +96,17 @@ d3.timeSeries = function(){
         svg.select('.axis')
             .call(axisX);
 
+        // //show value based on argument t
+        // _dis.on('showValue',function(t){
+        //    var index = bisect(_d, t),
+        //        v = _d[index];
+
+        //    var xPos = scaleX(v.x.getTime() + v.dx),
+        //        yPos = scaleY(v.y);
+
+        //     svg.select('.tool-tip').attr('transform','translate('+ (m.l+xPos) +','+ (m.t+yPos)+')')
+        //         .select('.tool-tip-text').text(v.y);
+        // });
 
     }
 
@@ -118,6 +144,7 @@ d3.timeSeries = function(){
         return this;
     }
 
+    // d3.rebind(exports, _dis, 'on', 'showValue');
 
     return exports;
 }
