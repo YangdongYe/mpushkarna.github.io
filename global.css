@@ -1,0 +1,55 @@
+html,body{
+    height:100%;
+    margin:0;
+    padding:0;
+    color:rgb(80,80,80);
+}
+.row{
+    position:relative;
+    margin-top: 20px;
+    padding:0px;
+    width=100%;
+}
+.container{
+    height:100%;
+    position:relative;
+    margin-top: 20px;
+}
+.plot{
+    position:relative;
+        width:20%;
+    height:120px;
+    float:left;
+}
+.controls{
+    position:relative;
+    height:20px;
+}
+h3{
+font-size: 24pt;
+text-align: right;
+text-align: top;
+
+}
+svg text,body{
+    font-family:Helvetica Neue, Helvetica, Arial;
+    font-size:12px;
+}
+
+svg text{
+    fill:rgb(80,80,80);
+}
+.axis .domain{
+    display:none;
+}
+.axis line{
+    stroke:rgb(200,200,200);
+}
+.plot .line path{
+    fill:none;
+    stroke-width:1.5px;
+    stroke:rgb(80,80,80);
+}
+.plot .area path{
+    fill:rgba(100,100,100,.05);
+}

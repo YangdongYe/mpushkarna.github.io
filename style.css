@@ -1,0 +1,113 @@
+.text1{
+	width:60%;
+    padding-left: 5%;
+}
+p{
+    font-size: 14pt;
+}
+.text2{
+    padding-left:5%;
+    width:60%;
+    height:200px;
+    font-size: 10pt;
+    color: #78584F;
+}
+h1{
+font-size: 22pt;
+font-weight: 800;
+}
+h3{
+width:80%;
+font-size: 14pt;
+color:#78584F;
+}
+
+.plot{
+    padding: 2%;
+    width:100%;
+    height:800px;
+}
+.plot #canvas{
+        width:100%;
+        height:100%;
+    }
+.tick text {
+    	font-size: 7pt;
+    }
+.axisX path{
+    stroke-width: 0.5px;
+    stroke: black;
+    fill: none;
+}
+.axisY path{
+    stroke-width: 0.5px;
+    stroke: black;
+    fill: none;
+}
+
+/* tooltip */
+.custom-tooltip-fundingRoundsID{
+	padding: 5px;
+	background: rgb(230,230,230);
+	width:200px;
+	height:20px;
+	position: absolute;
+	visibility:hidden;
+    z-index: 100;
+}
+
+.custom-tooltip-id{
+	padding: 5px;
+	background: rgb(230,230,230);
+	width:200px;
+	/*height:100%;*/
+	position: absolute;
+	visibility:hidden;
+    z-index: 100;
+}
+
+.custom-tooltip-date{
+	padding: 5px;
+	background: rgb(230,230,230);
+	width:200px;
+	height:25px;
+	position: absolute;
+	visibility:hidden;
+    z-index: 100;
+}
+
+.custom-tooltip-raisedAmount{
+	padding: 5px;
+	background: rgb(230,230,230);
+	width:200px;
+	height:20px;
+	position: absolute;
+	visibility:hidden;
+    z-index: 100;
+}
+
+.custom-tooltip-round{
+	padding: 5px;
+	background: rgb(230,230,230);
+	width:200px;
+	height:20px;
+	position: absolute;
+	visibility:hidden;
+    z-index: 100;
+}
+
+.custom-tooltip-raisedAmountUSD{
+	padding: 5px;
+	background: rgb(230,230,230);
+	width:200px;
+	height:20px;
+	position: absolute;
+	visibility:hidden;
+    z-index: 100;
+}
+
+/* fonts */
+h2{
+	font-size:13px;
+	margin: 0 0 5px;
+}
