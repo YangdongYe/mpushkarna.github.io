@@ -129,13 +129,13 @@ var plots = d3.select('.container')
     plots
     .enter()
     .append('div')
-    .attr('class','plot');
+    .attr('class','plots');
 
     plots
     .each(function(d,i){
         var timeSeries= d3.timeSeries()
-        .width(500)
-        .height(300)
+        .width(w2)
+        .height(h2)
         .timeRange(timeRange)
         .value(function(d){return d.fundingYear;})
         .maxY(1000)
