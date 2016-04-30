@@ -134,7 +134,7 @@ var plots = d3.select('.container')
     plots
     .each(function(d,i){
         var timeSeries= d3.timeSeries()
-        .width(w2)
+        .width(500)
         .height(300)
         .timeRange(timeRange)
         .value(function(d){return d.fundingMonth;})
