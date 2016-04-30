@@ -134,11 +134,11 @@ var plots = d3.select('.container')
     plots
     .each(function(d,i){
         var timeSeries= d3.timeSeries()
-        .width(300)
-        .height(100)
+        .width(w2)
+        .height(300)
         .timeRange(timeRange)
         .value(function(d){return d.fundingMonth;})
-        .maxY(4000)
+        .maxY(1000)
         .binSize(d3.time.month);
 
         d3.select(this).datum(d.values).call(timeSeries);
