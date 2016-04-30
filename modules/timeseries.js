@@ -55,10 +55,10 @@ d3.timeSeries = function(){
 
         //append and update DOM
         //Step 1: does <svg> element exist? If it does, update width and height; if it doesn't, create <svg>
-        var svg = d3.select(this).selectAll('svg')
-            .data([d]);
+        var svg2 = d3.select(this).selectAll('svg')
+                .data([d]);
 
-        var svgEnter = svg.enter().append('svg')
+        var svgEnter = svg2.enter().append('svg')
         svgEnter.append('g').attr('class','area').attr('transform','translate('+m.l+','+m.t+')').append('path');
         svgEnter.append('g').attr('class','line').attr('transform','translate('+m.l+','+m.t+')').append('path');
         svgEnter.append('g').attr('class','axis').attr('transform','translate('+m.l+','+(m.t+chartH)+')');
@@ -79,7 +79,7 @@ d3.timeSeries = function(){
         //     });
 
 
-        svg.attr('width',w).attr('height',h);
+        svg2.attr('width',w).attr('height',h);
 
         //Step 2: create layers of DOM individually
         //2.1 line graph
