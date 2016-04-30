@@ -222,8 +222,8 @@ return exports;
 
 function onMouseEnter(d){
   
-    var xy = d3.mouse(d3.select('.plot1').node());
-    //var xy =[100,333];
+    var xy = d3.mouse(d3.select('.plot').node());
+
     
     var _id = '', //string spacer
         idHeight = 0,
@@ -285,6 +285,7 @@ function onMouseEnter(d){
         .style('visibility','visible')
         .style('left',(xy[0]+10)+'px')
         .style('top',(xy[1]+10+(gapTooltips*20)+idHeight)+'px');
+  
     d3.select('.custom-tooltip-date')
         .select('h2')
         .html(d.fundingYear + "-" + d.fundingMonth);

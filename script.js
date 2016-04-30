@@ -4,13 +4,6 @@ var w = d3.select('#currencyNative.plot').node().clientWidth,
     selectID = 0,
     selectColor = 'round';
 
-var canvas = d3.select('#currencyNative.plot.svg1')
-                .append('canvas')
-                .attr('width',w)
-                .attr('height',h)
-                .node();
-    // ctx = canvas.getContext('2d');
-
 var listname = ["In Native Currency Origin Year",
     "In USD Equivalent Origin Year",
     "In USD Equivalent 2016"];
@@ -97,16 +90,6 @@ function dataLoaded(err,fundingRounds,currencyEx){
 // console.log(byfundingRoundsID); 
 
 
- var byFundingYear = d3.nest()
-                        .key(function(d){return d.fundingYear})
-                        .map(fundingRounds,d3.map);
-    console.log('by funding year ', byFundingYear);
-
-byfundingRoundsID.entries().forEach(function(fr){
-
-
-})
-
 //specifying ranges
     var amountExtent = d3.extent(fundingRounds,function(d){return d.raisedAmount}),
      timeRange = [new Date(1993,0,1),new Date(2013,11,31)];
@@ -115,7 +98,7 @@ byfundingRoundsID.entries().forEach(function(fr){
     var scatterplotModule = d3.scatterplot()
             .width(w)
             .height(h)
-            //.value(function(d){ return d.raisedAmount; })
+
             .gettingID(selectID)
             .gettingColor(selectColor)
             .timeRange(timeRange);
@@ -127,40 +110,38 @@ byfundingRoundsID.entries().forEach(function(fr){
             .call(scatterplotModule);
 
 
-// //time series variables
-//     var timeSeriesModule = d3.timeseries()
-//                         .width(w)
-//                         .height(h)
-//                         .value(function(d){ return d.fundingYear; })
-//                         .timeRange(timeRange);
+//TIME SERIES
 
-// draw time series
-    var plot2 = d3.select('.container')
-            .select('#timeSeriesChart.plot')
-            .data(byFundingYear);
-    plot2.enter().append('div').attr('class','plot');
-    
-    plot2.each(function(d,i){
-        var timeSeries = d3.timeseries()
-                    .width(w)
-                    .height(h)
-                    .timeRange(timeRange)
-                    .value(function(d){return d.fundingYear})
-                    .maxY(5000)
-                    .binSize(d3.time.month)
-                    .on('hover',function(t){
-                    globalDispatcher.pickTime(t);
-                });
+//create a nested hierarchy based on year of funding
+var byFundingYear = d3.nest()
+                        .key(function(d){return d.fundingYear})
+                        .entries(fundingRounds)
 
-            globalDispatcher.on('pickTime.'+i, function(t){
-                timeSeries.showValue(t);
-            });;
+    console.log('by funding year ', byFundingYear); //works
 
-    d3.select(this).datum(d.values).call(timeSeriesModule);
+//create a <div> for each station
+var plots = d3.select('.container')
+              .select('#histogram.plot')
+              .selectAll('.plot')
+              .data(byFundingYear);
+    plots
+    .enter()
+    .append('div')
+    .attr('class','plot');
+
+    plots
+    .each(function(d,i){
+        var timeSeries=d3.timeSeries()
+        .width(w2)
+        .height(h2)
+        .timeRange(timeRange)
+        .value(function(d){return d.roundCode;})
+        .maxY(4000)
+        .binSize(d3.time.month);
+
+        d3.select(this).datum(d.values).call(timeSeries);
 
     })
-
-            //.call(timeSeriesModule);
 }
 
 
