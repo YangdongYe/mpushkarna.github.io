@@ -23,8 +23,8 @@ for (var i=0;i<listname.length;i++) {
              }
 
 var queue = d3_queue.queue()
-    .defer(d3.csv, "../02_PlainCode/data/Crunchbase_FundingRounds_Final_V2.csv",parse)
-    .defer(d3.csv, "../02_PlainCode/data/currency_exchange_v2.csv",parseEX)
+    .defer(d3.csv, "../data/Crunchbase_FundingRounds_Final_V2.csv",parse)
+    .defer(d3.csv, "../data/currency_exchange_v2.csv",parseEX)
     .await(dataLoaded);
 
 var globalDispatcher = d3.dispatch('currencyyearchange','lenschange', 'pickTime');
