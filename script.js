@@ -137,7 +137,7 @@ var plots = d3.select('.container')
         .width(300)
         .height(100)
         .timeRange(timeRange)
-        .value(function(d){return d.roundCode;})
+        .value(function(d){return d.fundingMonth;})
         .maxY(4000)
         .binSize(d3.time.month);
 
