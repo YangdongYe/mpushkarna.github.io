@@ -1,8 +1,8 @@
 /*ORIGINAL SCRIPT*/
 var w = d3.select('#currencyNative.plot').node().clientWidth,
-     h = d3.select('#currencyNative.plot').node().clientHeight,
-     w2 = d3.select('#histogram.plot').node().clientWidth,
-     h2 = d3.select('#histogram.plot').node().clientHeight,
+    h = d3.select('#currencyNative.plot').node().clientHeight,
+    w2 = d3.select('#histogram.plot').node().clientWidth,
+    h2 = d3.select('#histogram.plot').node().clientHeight,
     selectID = 0,
     selectColor = 'round';
 
@@ -134,8 +134,8 @@ var plots = d3.select('.container')
     plots
     .each(function(d,i){
         var timeSeries=d3.timeSeries()
-        .width(w2)
-        .height(h2)
+        .width(300)
+        .height(100)
         .timeRange(timeRange)
         .value(function(d){return d.roundCode;})
         .maxY(4000)
