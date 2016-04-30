@@ -1,6 +1,8 @@
 /*ORIGINAL SCRIPT*/
 var w = d3.select('#currencyNative.plot').node().clientWidth,
      h = d3.select('#currencyNative.plot').node().clientHeight,
+     w2 = d3.select('#histogram.plot').node().clientWidth,
+     h2 = d3.select('#histogram.plot').node().clientHeight,
     selectID = 0,
     selectColor = 'round';
 

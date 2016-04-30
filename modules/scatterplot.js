@@ -221,10 +221,9 @@ return exports;
 }
 
 function onMouseEnter(d){
-    console.log("HERE");
   
-    var xy = d3.mouse(d3.select('.plot').node());
-
+    //var xy = d3.mouse(d3.select('.plot1').node());
+    var xy =[w-237,h+70];
     
     var _id = '', //string spacer
         idHeight = 0,
@@ -234,47 +233,20 @@ function onMouseEnter(d){
     if (d.fundOrganization != ''){ _id = _id + d.fundOrganization + ' ';}
     if (d.fundPeople != ''){ _id = _id + d.fundPeople + ' ';}
     
-    if (d.fundingRoundsID != ''){
-        d3.select('.custom-tooltip-fundingRoundsID')
-            .style('visibility','visible')
-            .style('left',(xy[0]+10)+'px')
-            .style('top',(xy[1]+10)+'px');
-        d3.select('.custom-tooltip-fundingRoundsID')
-            .select('h2')
-            .html(d.fundingRoundsID);
-        
-        gapTooltips += 1;
-    }
-    
-    if (_id != ''){
-        //console.log("1 "+d.fundCompany+" 2 "+d.fundOrganization+" 3 "+d.fundPeople);
-        
-        d3.select('.custom-tooltip-id')
-            .attr('id','idTooltip')
-            .style('visibility','visible')
-            .style('left',(xy[0]+10)+'px')
-            .style('top',(xy[1]+10+(gapTooltips*20))+'px');
-        d3.select('.custom-tooltip-id')
-            .select('h2')
-            .html(_id);
-        
-        idHeight = document.getElementById('idTooltip').offsetHeight - 8;
-    }
-    
-    d3.select('.custom-tooltip-raisedAmount')
+    d3.select('.custom-tooltip-date')
         .style('visibility','visible')
         .style('left',(xy[0]+10)+'px')
-        .style('top',(xy[1]+10+(gapTooltips*20)+idHeight)+'px');
-    d3.select('.custom-tooltip-raisedAmount')
+        .style('top',(xy[1]-10)+'px');
+    d3.select('.custom-tooltip-date')
         .select('h2')
-        .html(d.currencyCode + " " + d.raisedAmount);
+        .html(d.fundingYear + "-" + d.fundingMonth);
     gapTooltips += 1;
     
     if (d.roundCode != ''){
         d3.select('.custom-tooltip-round')
             .style('visibility','visible')
             .style('left',(xy[0]+10)+'px')
-            .style('top',(xy[1]+10+(gapTooltips*20)+idHeight)+'px');
+            .style('top',(xy[1]-10-(gapTooltips*20))+'px');
         d3.select('.custom-tooltip-round')
             .select('h2')
             .html("Round " + d.roundCode);
@@ -282,15 +254,55 @@ function onMouseEnter(d){
         gapTooltips += 1;
     }
     
-   d3.select('.custom-tooltip-date')
+    d3.select('.custom-tooltip-raisedAmount')
         .style('visibility','visible')
         .style('left',(xy[0]+10)+'px')
-        .style('top',(xy[1]+10+(gapTooltips*20)+idHeight)+'px');
-  
-    d3.select('.custom-tooltip-date')
+        .style('top',(xy[1]-10-(gapTooltips*20))+'px');
+    d3.select('.custom-tooltip-raisedAmount')
         .select('h2')
-        .html(d.fundingYear + "-" + d.fundingMonth);
+        .html(d.currencyCode + " " + d.raisedAmount);
     gapTooltips += 1;
+    
+    if (_id != ''){
+        console.log("1 "+d.fundCompany+" 2 "+d.fundOrganization+" 3 "+d.fundPeople);
+        
+        d3.select('.custom-tooltip-id1')
+            .attr('id','idTooltip1')
+            .style('visibility','visible')
+            .style('left',(xy[0]+10)+'px')
+            .style('top',(xy[1]-10-(gapTooltips*20))+'px');
+        d3.select('.custom-tooltip-id1')
+            .select('h2')
+            .html(_id);
+        
+        idHeight = document.getElementById('idTooltip1').offsetHeight - 8;
+        
+        d3.select('.custom-tooltip-id1')
+            .attr('id','idTooltip1')
+            .style('visibility','hidden')
+    }
+    
+    if (_id != ''){
+        d3.select('.custom-tooltip-id')
+            .attr('id','idTooltip')
+            .style('visibility','visible')
+            .style('left',(xy[0]+10)+'px')
+            .style('top',(xy[1]-10-((gapTooltips-1)*20)-idHeight)+'px');
+        d3.select('.custom-tooltip-id')
+            .select('h2')
+            .html(_id);
+    }
+    
+    if (d.fundingRoundsID != ''){
+        d3.select('.custom-tooltip-fundingRoundsID')
+            .style('visibility','visible')
+            .style('left',(xy[0]+10)+'px')
+            .style('top',(xy[1]-10-(gapTooltips*20)-idHeight)+'px');
+        d3.select('.custom-tooltip-fundingRoundsID')
+            .select('h2')
+            .style('font-weight','bold')
+            .html(d.fundingRoundsID);
+    }
 }
 
 function onMouseLeave(d){
