@@ -1,6 +1,7 @@
 .text1{
 	width:60%;
     padding-left: 5%;
+    z-index: 1;
 }
 p{
     font-size: 14pt;
@@ -11,6 +12,10 @@ p{
     height:200px;
     font-size: 10pt;
     color: #78584F;
+    z-index: 1;
+}
+.container{
+    z-index: 5;
 }
 h1{
 font-size: 22pt;
@@ -66,6 +71,16 @@ color:#78584F;
     z-index: 100;
 }
 
+.custom-tooltip-id1{
+	padding: 5px;
+	background: rgb(230,230,230);
+	width:200px;
+	/*height:100%;*/
+	position: absolute;
+	visibility:hidden;
+    z-index: 100;
+}
+
 .custom-tooltip-date{
 	padding: 5px;
 	background: rgb(230,230,230);
@@ -109,5 +124,7 @@ color:#78584F;
 /* fonts */
 h2{
 	font-size:13px;
+    font-style: oblique;
 	margin: 0 0 5px;
 }
+

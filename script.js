@@ -40,8 +40,7 @@ function dataLoaded(err,fundingRounds,currencyEx){
         var scatterplotModule = d3.scatterplot()
             .gettingID(selectID)
             .gettingColor(selectColor)
-            .timeRange(timeRange)
-            .canvas(canvas);  
+            .timeRange(timeRange); 
 
         var plot1 = d3.select('.container')
             .select('#currencyNative.plot')
@@ -100,7 +99,6 @@ function dataLoaded(err,fundingRounds,currencyEx){
     var scatterplotModule = d3.scatterplot()
             .width(w)
             .height(h)
-
             .gettingID(selectID)
             .gettingColor(selectColor)
             .timeRange(timeRange);
@@ -119,30 +117,30 @@ var byFundingYear = d3.nest()
                         .key(function(d){return d.fundingYear})
                         .entries(fundingRounds)
 
-    console.log('by funding year ', byFundingYear); //works
+//    console.log('by funding year ', byFundingYear); //works
 
 //create a <div> for each station
-var plots = d3.select('.container')
-              .select('#histogram.plot')
-              .selectAll('.plot')
-              .data(byFundingYear);
-    plots
-    .enter()
-    .append('div')
-    .attr('class','plots');
-
-    plots
-    .each(function(d,i){
-        var timeSeries= d3.timeSeries()
-        .width(w2)
-        .height(h2)
-        .timeRange(timeRange)
-        // .value(function(d){return d.fundingMonth;})
-        .maxY(1000)
-        .binSize(d3.time.month);
-
-        d3.select(this).datum(d.values).call(timeSeries);
-    })
+//var plots = d3.select('.container')
+//              .select('#histogram.plot')
+//              .selectAll('.plot')
+//              .data(byFundingYear);
+//    plots
+//    .enter()
+//    .append('div')
+//    .attr('class','plots');
+//
+//    plots
+//    .each(function(d,i){
+//        var timeSeries= d3.timeSeries()
+//        .width(w2)
+//        .height(h2)
+//        .timeRange(timeRange)
+//        // .value(function(d){return d.fundingMonth;})
+//        .maxY(1000)
+//        .binSize(d3.time.month);
+//
+//        d3.select(this).datum(d.values).call(timeSeries);
+//    })
 }
 
 

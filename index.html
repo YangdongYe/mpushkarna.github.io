@@ -11,15 +11,18 @@
 
     <body>
 
-        <div class ="text1"><h1>The Startup Scene</h2><p>This project visualized reported investments and funding data between 1993 and 2013, according to the crunchbase dataset. Visualized by round and by currency, we see a proliferation of angel and seed investments after a bleak period following the recession. A large number of start-ups have kickstarted a culture of disruptive innovation.</p></div><br>
+        <div class ="text1"><h1>The Startup Scene</h1><p>This project visualized reported investments and funding data between 1993 and 2013, according to the crunchbase dataset. Visualized by round and by currency, we see a proliferation of angel and seed investments after a bleak period following the recession. A large number of start-ups have kickstarted a culture of disruptive innovation.</p></div><br>
         <br>
         <div class ="text2"> 
-<div class="container-fluid">
-<div class="row">
-            <div class="col-md-4" id="leadingquestion"><h3>WHAT IS A VENTURE ROUND?<h3></div>
-            <div class="col-md-8">A venture round is a type of funding round used for venture capital financing, by which startup companies obtain investment, generally from venture capitalists and other institutional investors. The availability of venture funding is among the primary stimuli for the development of new companies and technologies. <a href='https://en.wikipedia.org/wiki/Venture_round'>source</a> </div></div></div>
-
-
+            <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4" id="leadingquestion">
+                    <h3>WHAT IS A VENTURE ROUND?<h3>
+                </div>
+                <div class="col-md-8">A venture round is a type of funding round used for venture capital financing, by which startup companies obtain investment, generally from venture capitalists and other institutional investors. The availability of venture funding is among the primary stimuli for the development of new companies and technologies. <a href='https://en.wikipedia.org/wiki/Venture_round'>source</a> 
+                </div>
+            </div>
+            </div>
 
         <div class="container">
         
@@ -33,12 +36,16 @@
                 <!-- Color -->
                 <a href="#" class="btn btn-primary lens" id="round">By Round</a>
                 <a href="#" class="btn btn-primary lens" id="currency">By Currency</a>
-            </div>  
+            </div>
             <div class="plot1" id="tooltip">
                 <div class="custom-tooltip-fundingRoundsID">
-					<h2>WHAT DO WE READ HERE?</h2>
+                    <h2></h2>
+<!--					<h2>WHAT DO WE READ HERE?</h2>-->
 				</div>
                 <div class="custom-tooltip-id">
+					<h2></h2>
+				</div>
+                <div class="custom-tooltip-id1">
 					<h2></h2>
 				</div>
                 <div class="custom-tooltip-raisedAmount">
@@ -53,28 +60,35 @@
                 <div class="custom-tooltip-date">
 					<h2></h2>
 				</div>
-        </div> 
+            </div> 
         </div>
-        <div class="plot" id="currencyNative" ></div>
+        
+        <div class="plot" id="currencyNative" >
+        </div>
 
         <div class="container-fluid">
-<div class="row"><div class="col-md-3" id="leadingquestion"><h3>DIFFERENT KINDS OF VENTURE ROUNDS</h3></div></div>
+            <div class="row"><div class="col-md-3" id="leadingquestion"><h3>DIFFERENT KINDS OF VENTURE ROUNDS</h3></div></div>
 
-<div class="row">
+        <div class="row">
             <div class="col-md-3"><h4>Seed Funding</h4><br>Seed funding is investment money that helps start a buisness in the hopes that it grows into a mature business that will generate revenue for the investor.</div>
             <div class="col-md-3"><h4>Series Funding</h4><br>Series rounds usually extend from Series A through C, though in several cases companies are known to go upto Series G. These funding rounds raise capital to see the company's product or service through various stages of product development, such as optimization, building and scaling.</div>
             <div class="col-md-3"><h4>Angel Investments</h4><br>An angel investor is an investor who provides financial backing for small startups or entrepreneurs. Angel investors are usually found among an entrepreneur's family and friends. The capital they provide can be a one-time injection of seed money or ongoing support to carry the company through difficult times.</div>
             <div class="col-md-3"><h4>Private  Equity</h4><br>A private equity fund is a collective investment scheme used for making investments in various equity (and to a lesser extent debt) securities. They are typically limited partnerships with a fixed term of 10 years. At inception, institutional investors make an unfunded commitment to the limited partnership, which is then drawn over the term of the fund.</div>
-</div>
-<div class="row">
+        </div>
+            
+        <div class="row">
 
-    <div class="col-md-3" ><h4>Debt Rounds</h4><br>Debt capital is the capital that a business raises by taking out a loan. It is a loan made to a company that is normally repaid at some future date.</div>
+            <div class="col-md-3" ><h4>Debt Rounds</h4><br>Debt capital is the capital that a business raises by taking out a loan. It is a loan made to a company that is normally repaid at some future date.</div>
             <div class="col-md-3"><h4>IPO Rounds</h4><br>An IPO, or initial public offering, is when your company sells stock to the public for the first time. This can be debt or equity offered on a public stock exchange.</div>
             <div class="col-md-3"><h4>Grant</h4><br>Grants are non-repayable funds or products disbursed by one party (grant makers), often a government department, corporation, foundation or trust, to a recipient, often (but not always) a nonprofit entity, educational institution, business or an individual.</div>
             <div class="col-md-3"><h4>Unattributed</h4><br>An unattributed round means that the funding amount does not have a disclosed named investor, or  disclosed type of round.</div>
-</div></div>
+        </div>
+        </div>
+    </div>
+    </div>
 
-<div class="plot" id="histogram" ></div>
+
+        <div class="plot" id="histogram" ></div>
         <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
         <script src="https://d3js.org/d3-queue.v2.min.js"></script>
 
